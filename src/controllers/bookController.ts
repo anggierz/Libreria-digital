@@ -5,7 +5,6 @@ export class BookController {
 
     //GET Books: Sin pasarle ningún argumento, lista todos los libros y devuelve una lista de la clase Book
     getBooks(): Book[] {
-        console.log(JSON.stringify(this.books));
         return this.books;
     }
 
@@ -14,17 +13,16 @@ export class BookController {
         const book = this.books.find(book => book.id === id);
 
         if (!book)
-            return `Book with ${id} does not exist`
+            return `Book with id ${id} does not exist`
 
-        console.log(JSON.stringify(book));
         return book;
     }
 
     //ADD BOOKS: Se le pasa un libro y este se añade a la lista de la clase Book
-    addBook(book: Book): void {
+    addBook(book: Book): Book {
         book.id = this.books.length + 1;
         this.books.push(book);
-        console.log(`Book added successfully!: ` + JSON.stringify(book));
+        return book;
     }
 
     updateBook(id: number, bookToUpdate: Partial<Book>): Book | string {
@@ -33,7 +31,6 @@ export class BookController {
 
         if (bookIndex !== -1) {
             this.books[bookIndex] = { ...this.books[bookIndex], ...bookToUpdate };
-            console.log(JSON.stringify(this.books[bookIndex]));
             return this.books[bookIndex];
         }
         return "Book not found";
@@ -48,6 +45,5 @@ export class BookController {
         }
         return "Book not found";
     }
-
 
 }
