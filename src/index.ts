@@ -18,7 +18,7 @@ while (1) {
 
     do {
         userChoice = parseInt(readLineSync.question("Escoge un número entre 1 y : "));
-    } while (userChoice < 1 || userChoice > 0)
+    } while (userChoice < 1 || userChoice > 8)
 
     switch (userChoice) {
         case 1:

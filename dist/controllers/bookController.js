@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BookController = void 0;
 class BookController {
     constructor() {
         this.books = [];
@@ -17,9 +18,11 @@ class BookController {
     }
     //ADD BOOKS: Se le pasa un libro y este se añade a la lista de la clase Book
     addBook(book) {
+        book.id = this.books.length + 1;
         this.books.push(book);
         console.log("Book added successfully!");
     }
-    updateBook(id) {
+    updateBook(id, bookToUpdate) {
     }
 }
+exports.BookController = BookController;
