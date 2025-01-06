@@ -1,6 +1,6 @@
 import { Book } from "../models/book";
 
-export class BookController {
+class BookController {
     private books: Book[] = [];
 
     //GET Books: Sin pasarle ningún argumento, lista todos los libros y devuelve una lista de la clase Book
@@ -47,3 +47,5 @@ export class BookController {
     }
 
 }
+
+export { BookController };

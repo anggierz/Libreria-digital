@@ -1,13 +1,18 @@
 //Para testing
 import { BookController } from "./controllers/bookController";
 import { UserController } from "./controllers/userController";
+import { LibraryController } from "./controllers/libraryController";
 import { Book } from "./models/book";
 import { User } from "./models/user";
+import { Library } from "./models/library";
 
 const bookManager = new BookController();
 const userManager = new UserController();
+const libraryManager = new LibraryController();
+
 
 //#region Definición de los objetos Book para pruebas de la 1 a la 5. Modificalo a tu gusto
+
 
 const bookTest1: Book = {
   title: "Juego de Tronos",

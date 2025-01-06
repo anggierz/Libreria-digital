@@ -3,6 +3,14 @@
 
 //This allows interfaces to be used across various parts of your project without the need to redefine them.
 
+export enum Genre {
+    Fiction,
+    NonFiction,
+    Mystery,
+    SciFi,
+    Biography,
+}
+
 export interface Book {
     id?: number,
     title: string,

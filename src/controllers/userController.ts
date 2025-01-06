@@ -1,6 +1,6 @@
 import { User } from "../models/user";
 
-export class UserController {
+class UserController {
   private users: User[] = [];
 
   getUsers(): User[] {
@@ -15,7 +15,6 @@ export class UserController {
     return user;
   }
 
-  //ADD BOOKS: Se le pasa un libro y este se añade a la lista de la clase Book
   addUser(user: User): User | string {
     let isEmailValid = this.emailChecker(user.email);
 
@@ -48,7 +47,7 @@ export class UserController {
     return "User not found";
   }
 
-  emailChecker(email: string): boolean {
+  private emailChecker(email: string): boolean {
     let emailValid = true;
 
     const user = this.users.find((user) => user.email === email);
@@ -59,3 +58,5 @@ export class UserController {
   }
 
 }
+
+export { UserController };
