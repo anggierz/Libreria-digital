@@ -13,7 +13,7 @@ class BookController {
     getBookById(id) {
         const book = this.books.find(book => book.id === id);
         if (!book)
-            return `Book with ${id} does not exist`;
+            return `Book with id ${id} does not exist`;
         return book;
     }
     //ADD BOOKS: Se le pasa un libro y este se añade a la lista de la clase Book

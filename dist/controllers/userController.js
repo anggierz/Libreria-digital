@@ -11,10 +11,9 @@ class UserController {
     getUserById(id) {
         const user = this.users.find((user) => user.id === id);
         if (!user)
-            return `User with ${id} does not exist`;
+            return `User with id ${id} does not exist`;
         return user;
     }
-    //ADD BOOKS: Se le pasa un libro y este se añade a la lista de la clase Book
     addUser(user) {
         let isEmailValid = this.emailChecker(user.email);
         if (!isEmailValid) {
@@ -25,12 +24,6 @@ class UserController {
         return user;
     }
     updateUser(id, userToUpdate) {
-        if (userToUpdate.email) {
-            let isEmailValid = this.emailChecker(userToUpdate.email);
-            if (!isEmailValid) {
-                return "Email already exists for another user. Please choose another one";
-            }
-        }
         let userIndex = this.users.findIndex((user) => user.id === id);
         if (userIndex !== -1) {
             this.users[userIndex] = Object.assign(Object.assign({}, this.users[userIndex]), userToUpdate);
