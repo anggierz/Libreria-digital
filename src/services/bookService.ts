@@ -1,42 +1,52 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BookController = void 0;
+import { Book } from "../models/book";
+
+//Services are where the business logic is located
 class BookController {
-    constructor() {
-        this.books = [];
-    }
+    private books: Book[] = [];
+
     //GET Books: Sin pasarle ningún argumento, lista todos los libros y devuelve una lista de la clase Book
-    getBooks() {
+    getBooks(): Book[] {
         return this.books;
     }
+
     //Buscar un libro por id, si existe, se devuelve el libro, si no existe, se devuelve un mensaje
-    getBookById(id) {
+    getBookById(id: number): (Book | string) {
         const book = this.books.find(book => book.id === id);
+
         if (!book)
-            return `Book with id ${id} does not exist`;
+            return `Book with id ${id} does not exist`
+
         return book;
     }
+
     //ADD BOOKS: Se le pasa un libro y este se añade a la lista de la clase Book
-    addBook(book) {
+    addBook(book: Book): Book {
         book.id = this.books.length + 1;
         this.books.push(book);
         return book;
     }
-    updateBook(id, bookToUpdate) {
-        let bookIndex = this.books.findIndex(book => book.id === id);
+
+    updateBook(id: number, bookToUpdate: Partial<Book>): Book | string {
+
+        let bookIndex = this.books.findIndex(book => book.id === id)
+
         if (bookIndex !== -1) {
-            this.books[bookIndex] = Object.assign(Object.assign({}, this.books[bookIndex]), bookToUpdate);
+            this.books[bookIndex] = { ...this.books[bookIndex], ...bookToUpdate };
             return this.books[bookIndex];
         }
         return "Book not found";
     }
-    deleteBook(id) {
-        let bookIndex = this.books.findIndex(book => book.id === id);
+
+    deleteBook(id: number): string {
+        let bookIndex = this.books.findIndex(book => book.id === id)
+
         if (bookIndex !== -1) {
             this.books.splice(bookIndex);
             return "Book deleted successfully";
         }
         return "Book not found";
     }
+
 }
-exports.BookController = BookController;
+
+export { BookController };

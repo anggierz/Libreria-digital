@@ -1,5 +1,6 @@
 import { User } from "../models/user";
 
+//Services are where the business logic is located
 class UserController {
   private users: User[] = [];
 
@@ -16,13 +17,12 @@ class UserController {
   }
 
   addUser(user: User): User | string {
-    let isEmailValid = this.emailChecker(user.email);
+    let isEmailValidForCreation = this.emailChecker(user.email);
 
-    if (!isEmailValid) {
-      return "Email already exists for another user. Please choose another one";
+    if (!isEmailValidForCreation) {
+      return "Email is incorrect or duplicated";
     }
 
-    user.id = this.users.length + 1;
     this.users.push(user);
     return user;
   }
@@ -47,15 +47,42 @@ class UserController {
     return "User not found";
   }
 
+  //#region Private methods
+
   private emailChecker(email: string): boolean {
-    let emailValid = true;
+    let emailValidToContinue = true;
+
+    if (this.IsEmailInvalid(email) || this.IsEmailDuplicated(email))
+      emailValidToContinue = false;
+
+    return emailValidToContinue;
+
+  }
+
+  private IsEmailInvalid(email: string): boolean {
+    let isEmailInvalid = false;
+    const emailRegex = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i;
+
+    if (emailRegex.test(email))
+      isEmailInvalid = true;
+
+    return isEmailInvalid;
+  }
+
+  private IsEmailDuplicated(email: string) : boolean {
+
+    let isEmailDuplicated = false;
 
     const user = this.users.find((user) => user.email === email);
 
-    if (user) emailValid = false;
+    if (user) isEmailDuplicated = true;
 
-    return emailValid;
+    return isEmailDuplicated;
+
   }
+
+
+  //#endregion
 
 }
 

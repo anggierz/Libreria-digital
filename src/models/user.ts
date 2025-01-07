@@ -6,6 +6,7 @@ interface IUser {
     birthDate: Date
 }
 
+@LogCreacion
 class User implements User {
     public id: number;
     public name: string;
@@ -18,7 +19,6 @@ class User implements User {
         this.email = email;
         this.birthDate = birthDate;
     }
-
 }
 
 

@@ -17,4 +17,26 @@ function LogCreacion(target: Function) {
     return f;
 }
 
-export { LogCreacion };
+function EmailValidator(target: Function) {
+    const original = target;
+
+    function construct(email: string, args: any[]) {
+        const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            throw new Error("Invalid email address expression");
+        }
+    }
+
+    const f: any = function(email: string, ...args: any[]) {
+        return construct(email, args);
+    }
+
+    f.prototype = original.prototype;
+
+    return f;
+  
+}
+  
+  
+
+export { EmailValidator, LogCreacion };
