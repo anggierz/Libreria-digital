@@ -17,9 +17,11 @@ class LibraryController {
     const user = this.userController.getUserById(userId);
     const book = this.bookController.getBookById(bookId);
 
+    //Verify that bookId and userId exist
     if (typeof user == "string") return user;
     if (typeof book == "string") return book;
 
+    //Verify that there are copies available for the book that's being loaned
     if (book.copiesAvailable <= 0)
       return `No copies available for book with title: ${book.title}`;
 
@@ -34,15 +36,17 @@ class LibraryController {
     const loan = this.loans.find((loan) => loan.bookId == bookId && loan.userId == userId && loan.returnDate == null);
     const book = this.bookController.getBookById(bookId);
 
+    //Verify that the loan is valid for return
     if (!loan) return `No loans found`;
 
+    //Verify that the book exists
     if (typeof book == "string") return book;
 
     loan?.registerReturnDate(new Date());
     book.copiesAvailable += 1;
     return `Book with title: ${book.title} returned. Date of Return: ${loan?.returnDate}`;
   }
-  
+
 }
 
 export { LibraryController };

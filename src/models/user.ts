@@ -14,7 +14,7 @@ class User implements IUser {
     public birthDate: Date;
 
     constructor(name: string, email: string, birthDate: Date) {
-        this.id = -1; 
+        this.id = -1; //El id será asignado en userController.ts
         this.name = name;
         this.email = email;
         this.birthDate = birthDate;

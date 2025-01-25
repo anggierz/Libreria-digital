@@ -33,7 +33,7 @@ class Book implements IBook {
     public copiesAvailable: number;
 
     constructor(title: string, author: string, publicationYear: number, genre: Genre, copiesAvailable: number) {
-        this.id = -1; //El id será asignado en bookService.ts
+        this.id = -1; //El id será asignado en bookController.ts
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;

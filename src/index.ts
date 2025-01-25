@@ -60,7 +60,7 @@ console.log(bookController.getBooks());
 
 const user1 = new User("John Doe", "johndoe@test.com", new Date("2000-11-01"));
 const user2 = new User("Anggie Rizo", "anggie@gmail.com", new Date("1999-10-30"));
-const user3 = new User("John Doe Duplicated", "johndoe@test.com", new Date("1998-02-02"));
+const user3 = new User("John Doe Duplicated", "johndoe@test.com", new Date("1998-02-02")); //This user won't be added because it has a duplicated email
 
 const usersToCreate: User[] = [user1, user2, user3];
 
