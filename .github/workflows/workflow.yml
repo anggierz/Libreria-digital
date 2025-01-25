@@ -1,4 +1,4 @@
-name: Always Pass Workflow
+name: build
 
 on:
   push:
