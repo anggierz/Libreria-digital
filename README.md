@@ -1,7 +1,7 @@
 # Libreria-digital
 Aplicación web sencilla para la gestión de una librería digital utilizando TypeScript.
 
-[![Build Status](https://github.com/anggierz/Libreria-digital/actions/workflows/workflow.yml/badge.svg?branch=main&event=status)](https://github.com/anggierz/Libreria-digital/actions/workflows/workflow.yml)
+[![build](https://github.com/anggierz/Libreria-digital/actions/workflows/workflow.yml/badge.svg)](https://github.com/anggierz/Libreria-digital/actions/workflows/workflow.yml)
 
 ## Organización del proyecto
 
