@@ -5,6 +5,15 @@ Aplicación web sencilla para la gestión de una librería digital utilizando Ty
 
 ## Organización del proyecto
 
+- He decidido utilizar una metodología de trabajo MVC (modelo, vista, controlador) "a mi manera". Al no ser necesario desarrollar
+componentes Frontend para esta actividad, la parte de "Vista" se omite.
+
+- He implementado interfaces para definir los contratos que deben seguir los modelos. He decidido no implementar dichas interfaces en los métodos de los controladores porque lo veía excesivo para esta actividad. En un proyecto empresarial, sí que vería esto necesario.
+
+-He intentado respetar principios de clean code y los principios SOLID en la medida de lo posible, ya que he leído sobre ellos
+pero aún me faltan años de práctica para poder implementarlos completamente en cualquier código que escriba.
+
+
 ```sh
 libreria-digital/
 ├── src/
