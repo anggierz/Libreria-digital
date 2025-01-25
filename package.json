@@ -1,0 +1,28 @@
+{
+  "name": "libreria-digital",
+  "version": "1.0.0",
+  "description": "\"Aplicación de librería digital para gestionar libros, usuarios y préstamos.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anggierz/Libreria-digital.git"
+  },
+  "keywords": [
+    "typescript",
+    "library",
+    "user",
+    "book"
+  ],
+  "author": "Anggie Rizo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anggierz/Libreria-digital/issues"
+  },
+  "homepage": "https://github.com/anggierz/Libreria-digital#readme",
+  "devDependencies": {
+    "@types/node": "^22.10.10"
+  }
+}
