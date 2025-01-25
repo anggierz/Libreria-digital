@@ -1,17 +1,28 @@
 {
-  "name": "readline-sync",
-  "version": "1.4.10",
-  "main": "./lib/readline-sync.js",
+  "name": "libreria-digital",
+  "version": "1.0.0",
+  "description": "\"Aplicación de librería digital para gestionar libros, usuarios y préstamos.\"",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": {
-    "name": "anseki",
-    "url": "https://github.com/anseki"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anggierz/Libreria-digital.git"
   },
-  "license": "MIT",
-  "description": "Synchronous Readline for interactively running to have a conversation with the user via a console(TTY).",
+  "keywords": [
+    "typescript",
+    "library",
+    "user",
+    "book"
+  ],
+  "author": "Anggie Rizo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anggierz/Libreria-digital/issues"
+  },
+  "homepage": "https://github.com/anggierz/Libreria-digital#readme",
   "devDependencies": {
-    "@types/node": "^22.10.5"
+    "@types/node": "^22.10.10"
   }
 }

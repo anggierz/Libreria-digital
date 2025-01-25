@@ -106,8 +106,9 @@ class UserController {
 }
 ```
 
-
 ## Instalación y Uso
+
+> Note: Se ha añadido al .gitignore la carpeta node_modules y los archivos JS compilados, para que el usuario que clone el repositorio, pueda empezar desde cero siguiendo los pasos indicados a continuación.
 
 1. Clona el repositorio
 
