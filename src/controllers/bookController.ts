@@ -4,13 +4,11 @@ import { Book } from "../models/book";
 class BookController {
     private books: Book[] = [];
 
-    //GET Books: Sin pasarle ningún argumento, lista todos los libros y devuelve una lista de la clase Book
-    getBooks(): Book[] {
+    public getBooks(): Book[] {
         return this.books;
     }
 
-    //Buscar un libro por id, si existe, se devuelve el libro, si no existe, se devuelve un mensaje
-    getBookById(id: number): (Book | string) {
+    public getBookById(id: number): (Book | string) {
         const book = this.books.find(book => book.id === id);
 
         if (!book)
@@ -19,16 +17,15 @@ class BookController {
         return book;
     }
 
-    //ADD BOOKS: Se le pasa un libro y este se añade a la lista de la clase Book
-    addBook(book: Book): Book {
+    public addBook(book: Book): Book {
         book.id = this.books.length + 1;
         this.books.push(book);
         return book;
     }
 
-    updateBook(id: number, bookToUpdate: Partial<Book>): Book | string {
+    public updateBook(id: number, bookToUpdate: Partial<Book>): Book | string {
 
-        let bookIndex = this.books.findIndex(book => book.id === id)
+        let bookIndex = this.findBookIndexById(id);
 
         if (bookIndex !== -1) {
             this.books[bookIndex] = { ...this.books[bookIndex], ...bookToUpdate };
@@ -37,15 +34,24 @@ class BookController {
         return "Book not found";
     }
 
-    deleteBook(id: number): string {
-        let bookIndex = this.books.findIndex(book => book.id === id)
+    public deleteBook(id: number): string {
+        let bookIndex = this.findBookIndexById(id);
 
         if (bookIndex !== -1) {
-            this.books.splice(bookIndex);
+            this.books.splice(bookIndex, 1);
             return "Book deleted successfully";
         }
         return "Book not found";
     }
+    //#region Book Private methods
+
+    private findBookIndexById(id: number): number {
+        let index : number = this.books.findIndex(book => book.id === id)
+
+        return index;
+    }
+
+    //#endregion
 
 }
 

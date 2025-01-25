@@ -1,103 +1,127 @@
 //Para testing
-import { BookController } from "./services/bookService";
-import { UserController } from "./services/userService";
-import { LibraryController } from "./services/libraryService";
+import { BookController } from "./controllers/bookController";
+import { UserController } from "./controllers/userController";
+import { LibraryController } from "./controllers/libraryController";
 import { Book, Genre } from "./models/book";
 import { User } from "./models/user";
 import { Library } from "./models/library";
 
-const bookManager = new BookController();
-const userManager = new UserController();
-const libraryManager = new LibraryController();
 
-
-//#region Definición de los objetos Book para pruebas de la 1 a la 5. Modificalo a tu gusto
-
-
-const bookTest1 = new Book(1, "Juego de Tronos", "George R. R. Martin", 1997, Genre.SciFi, 25);
-
-const bookTest1_Updated = new Book(1, "Juego de Tronos", "George R. R. Martin", 1997, Genre.SciFi, 37);
-
-const bookTest2 = new Book(2, "1984", "George Orwell", 1949, Genre.SciFi, 76);
-
+//#region Initialize controllers
+const bookController = new BookController();
+const userController = new UserController();
+const libraryController = new LibraryController(bookController, userController);
 //#endregion
 
-//#region  Definición de los objetos User para pruebas de la 6 a la 10. Modificalo a tu gusto
 
-const userTest1 = new User(1, "Anggie", "anggie@test.com", new Date("1999-10-30"));
+//#region Add Books
+const book1 = new Book("1984", "George Orwell", 1949, Genre.SciFi, 20);
+const book2 = new Book("Aprendiendo JavaScript: desde cero hasta ECMAScript 6", "Carlos Azaustre", 2016, Genre.Technology, 10);
+const book3 = new Book("Clean Code", "Robert C. Martin", 2008, Genre.Technology, 15);
+const book4 = new Book("Maria Antonieta", "Stefan Zweig", 2012, Genre.Biography, 0);
+const book5 = new Book("Hábitos atómicos", "James Clear", 2020, Genre.NonFiction, 35);
 
-const userTest1_updated = new User(1, "Anggie", "anggie@test.com", new Date("1999-10-30"));
+const booksToCreate: Book[] = [book1, book2, book3, book4, book5];
 
-const userTest2 = new User(2, "John", "john@test.com", new Date("1985-06-01"));
+booksToCreate.forEach(book => {
+  bookController.addBook(book);
+});
 //#endregion
 
-let userChoice: number = 0;
-const readLineSync = require("readline-sync");
 
-while (1) {
-  console.log("Bienvenido a la aplicación");
-  console.log("   1. Get Books");
-  console.log("   2. Get Book By Id");
-  console.log("   3. Add Book");
-  console.log("   4. Update Book");
-  console.log("   5. Delete Book");
-  console.log("   6. Get Users");
-  console.log("   7. Get User By Id");
-  console.log("   8. Add User");
-  console.log("   9. Update User");
-  console.log("   10. Delete User");
+//#region Get Books
+console.log(bookController.getBooks());
+//#endregion
 
-  do {
-    userChoice = parseInt(
-      readLineSync.question("Escoge un número entre 1 y 10: ")
-    );
-  } while (userChoice < 1 || userChoice > 10);
+//#region Update Book
+const bookToUpdate = bookController.getBookById(2);
 
-  switch (userChoice) {
-    case 1:
-      let books = bookManager.getBooks();
-      console.log(JSON.stringify(books));
-      break;
-    case 2:
-      let output = bookManager.getBookById(2);
-      console.log(JSON.stringify(output));
-      break;
-    case 3:
-      let bookCreated1 = bookManager.addBook(bookTest1);
-      let bookCreated2 = bookManager.addBook(bookTest2);
-      console.log(JSON.stringify(bookCreated1));
-      console.log(JSON.stringify(bookCreated2));
-      break;
-    case 4:
-      let outputUpdateBook = bookManager.updateBook(1, bookTest1_Updated);
-      console.log(JSON.stringify(outputUpdateBook));
-      break;
-    case 5:
-      console.log(bookManager.deleteBook(2));
-      break;
-    case 6:
-      let users = userManager.getUsers();
-      console.log(JSON.stringify(users));
-      break;
-    case 7:
-      let outputGetUserById = userManager.getUserById(2);
-      console.log(JSON.stringify(outputGetUserById));
-      break;
-    case 8:
-      let userCreated1 = userManager.addUser(userTest1);
-      let userCreated2 = userManager.addUser(userTest2);
-      console.log(JSON.stringify(userCreated1));
-      console.log(JSON.stringify(userCreated2));
-      break;
-    case 9:
-      let outputUpdateUser = userManager.updateUser(1, userTest1_updated);
-      console.log(JSON.stringify(outputUpdateUser));
-      break;
-    case 10:
-      console.log(userManager.deleteUser(2));
-      break;
-    default:
-      console.log("Escoge una opción válida");
-      break;
-  }
+if (typeof bookToUpdate !== "string") {
+  bookToUpdate.title = "Aprendiendo JS";
+  bookToUpdate.publicationYear = 2017;
+
+  bookController.updateBook(2, bookToUpdate);
 }
+
+const bookAfterUpdate = bookController.getBookById(2);
+console.log(JSON.stringify(bookAfterUpdate));
+
+//#endregion
+
+
+//#region Delete Book
+
+console.log(bookController.deleteBook(1));
+console.log(bookController.deleteBook(7));
+console.log(bookController.getBooks());
+//#endregion
+
+//#region Add Users
+
+const user1 = new User("John Doe", "johndoe@test.com", new Date("2000-11-01"));
+const user2 = new User("Anggie Rizo", "anggie@gmail.com", new Date("1999-10-30"));
+const user3 = new User("John Doe Duplicated", "johndoe@test.com", new Date("1998-02-02"));
+
+const usersToCreate: User[] = [user1, user2, user3];
+
+usersToCreate.forEach(user => {
+  userController.addUser(user);
+});
+
+//#endregion
+
+
+//#region Get Users
+
+console.log(userController.getUsers());
+//#endregion
+
+//#region Delete User
+
+console.log(userController.deleteUser(4));
+console.log(userController.deleteUser(1));
+console.log(userController.getUsers());
+
+//#endregion
+
+
+//#region Loan Book with userId or BookId that does not exist
+
+console.log(libraryController.loanBook(2, 1));
+
+//#endregion
+
+//#region Loan Book with userId and bookId that exists
+
+console.log(libraryController.loanBook(3, 2));
+
+//Get copies available of the book loaned to check that it has decreased
+
+console.log(bookController.getBookById(3));
+
+//#endregion
+
+//#region Loan Book with userId and bookId that exists but there are no copies available for the book
+
+
+console.log(libraryController.loanBook(4, 2));
+
+
+//#endregion
+
+
+//#region Return Book for a Loan that exists
+
+console.log(libraryController.returnBook(3, 2));
+
+
+//Get copies available of the book returned to check that it has increased
+console.log(bookController.getBookById(3));
+//#endregion
+
+
+//#region Return Book for a Loan that does not exist or a loan that has ended (because the book has been returned)
+
+console.log(libraryController.returnBook(3, 2));
+
+//#endregion

@@ -7,19 +7,19 @@ interface IUser {
 }
 
 @LogCreacion
-class User implements User {
+class User implements IUser {
     public id: number;
     public name: string;
     public email: string;
     public birthDate: Date;
 
-    constructor(id: number, name: string, email: string, birthDate: Date) {
-        this.id = id;
+    constructor(name: string, email: string, birthDate: Date) {
+        this.id = -1; 
         this.name = name;
         this.email = email;
         this.birthDate = birthDate;
     }
+
 }
 
-
-export { IUser, User };
+export { User };

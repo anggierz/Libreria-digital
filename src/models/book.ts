@@ -11,6 +11,7 @@ enum Genre {
     Mystery,
     SciFi,
     Biography,
+    Technology
 }
 
 interface IBook {
@@ -31,8 +32,8 @@ class Book implements IBook {
     public genre: Genre;
     public copiesAvailable: number;
 
-    constructor(id: number, title: string, author: string, publicationYear: number, genre: Genre, copiesAvailable: number) {
-        this.id = id;
+    constructor(title: string, author: string, publicationYear: number, genre: Genre, copiesAvailable: number) {
+        this.id = -1; //El id será asignado en bookService.ts
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
@@ -42,4 +43,4 @@ class Book implements IBook {
     
 }
 
-export { Genre, IBook, Book};
+export { Genre, Book};
