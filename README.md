@@ -103,6 +103,12 @@ class UserController {
   public getUserById(id: number): User | string; // Método para obtener un usuario por su ID
   public addUser(user: User): User | string; // Método para añadir un nuevo usuario
   public deleteUser(id: number): string; // Método para eliminar un usuario
+
+  // Métodos privados
+  private findUserIndexById(id: number): number; // Método privado devolver el índice del usuario que contenga el ID
+  private IsEmailValidForCreation(email: string): boolean; //Método privado para validar que se puede proceder con la creación del usuario
+  private IsEmailDuplicated(email: string) : boolean; //Método privado para comprobar que el email introducido no pertenece a otro usuario existente
+  private IsEmailEmptyString(email: string) : boolean; //Método privado para comprobar que el email introducido no es un string vacío
 }
 ```
 
@@ -118,7 +124,7 @@ class UserController {
 npm install
 ```
 
-3. Compila el proyecto TS a JS ejecutando:
+3. Traspila el proyecto TS a JS ejecutando:
 
 ```sh
 tsc
