@@ -124,7 +124,7 @@ class UserController {
 npm install
 ```
 
-3. Traspila el proyecto TS a JS ejecutando:
+3. Transpila el proyecto TS a JS ejecutando:
 
 ```sh
 tsc
